@@ -1,0 +1,121 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+body {
+    font-family: Arial, Arial, Helvetica, sans-serif, sans-serif;
+    line-height: 1.4;
+    /*    background: -webkit-gradient(linear, left top, right bottom, from(#f67e7d), to(#843b62)) fixed;*/
+    background: -webkit-gradient(linear, left top, right bottom, from(#0b032d), to(#621940)) fixed;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+button {
+    width: 100px;
+    height: 50px;
+    font-size: 40px;
+    color: white;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    border: none;
+    background-image: linear-gradient(to right, #f67e7d, #843b62);
+    /*    background-image: linear-gradient(to right, #0b032d, #621940);*/
+    width: 100%;
+    /*    box-shadow: 0px 10px 20px #0a010d; */
+}
+
+table, th, td {
+    padding-right: 14px;
+    padding-left: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-weight: normal;
+}
+
+button {
+    background-color: #621940;
+    border: none;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    border-radius: 8px;
+    display: inline-block;
+}
+
+button:hover {
+    background-color: #F86E51; /* Green */
+    color: white;
+}
+
+.form {
+    border-radius: 8px;
+    background-color: #843b62;
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 50px;
+    box-shadow: 5px 5px 5px #0b032d;
+    color: white;
+    margin-top: 20px;
+}
+
+.nonInputText{
+    color:white;
+}
+
+h1 {
+    color: white;
+}
+
+.textInput{
+    text-align: left;
+}
+
+.dangerous {
+    color: #0b032d;
+    background-color: #D1193E;
+    text-align: center;
+    width: 300px;
+    height: 50px;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-weight: 100;
+    box-shadow: 5px 5px 5px #0b032d;
+    border-radius: 8px;
+}
+
+.medium {
+    color: #0b032d;
+    background-color: #F86E51;
+    text-align: center;
+    width: 300px;
+    height: 50px;
+    margin: 0 auto;
+    margin-top: 20px;
+    box-shadow: 5px 5px 5px #0b032d;
+    border-radius: 8px;
+}
+
+.low {
+    color: #0b032d;
+    background-color: #FBA465;
+    text-align: center;
+    width: 300px;
+    height: 50px;
+    margin: 0 auto;
+    margin-top: 20px;
+    box-shadow: 5px 5px 5px #0b032d;
+    border-radius: 8px;
+}
+
