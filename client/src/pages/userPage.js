@@ -5,9 +5,13 @@ import axios from "axios";
 import LinkBar from '../components/LinkBar'
 import ButtonComponent from '../components/ButtonComponent'
 import TextInputComponent from '../components/TextInputComponent'
+import CheckBoxComponent from '../components/CheckBoxComponent'
 import DocumentMeta from 'react-document-meta';
 
 let locationName = '';
+let isInfected = false;
+let hasSymptoms = false;
+
 const meta = { name:"viewport", content:"width=device-width, initial-scale=1.0"}
 class userPage extends Component {
     constructor() {
@@ -17,7 +21,9 @@ class userPage extends Component {
             linkBar: null,
             locationsUI: null,
             score: 0,
-            levelStyle: ''
+            levelStyle: '',
+            submittedReport: false,
+            submittedLocation: false
         };
     }
 
@@ -92,7 +98,6 @@ class userPage extends Component {
 
 
     addData = (event) => {
-        console.log("werwerwe");
         this.connections();
 
 
@@ -129,11 +134,40 @@ class userPage extends Component {
 
         let responseJson = await response.json();
         this.setState({ score: responseJson.score });
+        this.setState({ submittedLocation: true });
         this.updateLevelStyle(responseJson.score);
         console.log(responseJson);
 
     }
 
+    recordInfected = (event) => {
+        isInfected = event.target.checked;
+        console.log(isInfected);
+    }
+
+    recordSymptoms = (event) => {
+        hasSymptoms = event.target.checked;
+        console.log(hasSymptoms);
+    }
+
+    selfReport = (event) => {
+        this.reportConnection();
+        this.setState({ submittedReport: true });
+    }
+
+    async reportConnection() {
+        let response = await fetch("http://localhost:5001/selfReport", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: this.state.username,
+                isInfected: isInfected,
+                hasSymptoms: hasSymptoms
+            })
+        })
+    }
 
     render() {
         return (
@@ -141,19 +175,47 @@ class userPage extends Component {
                 <DocumentMeta {...meta} />
                 {this.state.linkBar}
                 <div className = "forceMargin">
-                <h1>EXPOSURE LEVEL</h1>
-                <div className={this.state.levelStyle} > { this.state.score }</div>
-                <div>
-                    <h2>THANK YOU FOR HELPING TO FIGHT COVID 19</h2>
-                    <div className="form">
-                        <TextInputComponent label="Where have you been? " logChange={this.locationNameChange}/>
-                        <ButtonComponent label="SUBMIT" isPressed={this.addData} />
-                        <h4> Suggested Locations </h4>
-                        {this.state.locationsUI}
+                    <h1>EXPOSURE LEVEL</h1>
+                    <div className={this.state.levelStyle}> {this.state.score}</div>
 
+                    <div>
+                        <h2>THANK YOU FOR HELPING TO FIGHT COVID 19</h2>
+                        <div className="form">
+                            {
+                                this.state.submittedLocation
+                                    ? <p> Thank you! </p>
+                                    : <p></p>
+                            }
+
+                            <h3><TextInputComponent label="Where have you been? " logChange={this.locationNameChange}/></h3>
+                            <ButtonComponent label="SUBMIT" isPressed={this.addData} />
+                            <h4> Suggested Locations </h4>
+                            {this.state.locationsUI}
+
+                            </div>
                     </div>
+
+                    <div className="form">
+                        <input type="checkbox" id="infected" name="infected" onChange={this.recordSymptoms} />
+                        <label for="infected"> I have symptoms</label><br />
+
+
+                        <input type="checkbox" id="infected" name="infected" onChange={this.recordInfected} />
+                        <label for="infected"> I have been diagnosed with Covid 19</label><br />
+
+
+                        <ButtonComponent label="REPORT" isPressed={this.selfReport} />
+
+                        {
+                            this.state.submittedReport
+                                ? <p className="flavorText"> Thank you for reporting! Your input is extremely important for the safety of others! </p>
+                                : <p></p>
+                        }
                     </div>
+
+
                 </div>
+
             </div>
         );
     }

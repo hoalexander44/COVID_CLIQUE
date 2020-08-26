@@ -17,7 +17,8 @@ class friendListPage extends Component {
             username: "",
             linkBar: null,
             friendInfo: [],
-            friendUI: []
+            friendUI: [],
+            addedFriend: false
         };
     }
 
@@ -43,7 +44,29 @@ class friendListPage extends Component {
 
     // adds a friend
     addFriend = (event) => {
-        fetch("http://localhost:5001/addFriend", {
+        this.friendConnection();
+        //fetch("http://localhost:5001/addFriend", {
+        //    method: "POST",
+        //    headers: {
+        //        "Content-Type": "application/json"
+        //    },
+        //    body: JSON.stringify({
+        //        friendName: nameFriend,
+        //        username: this.state.username,
+        //    })
+        //}).then(function (response) {
+        //    if (response.status === 200) {
+        //        console.log("Success");
+        //    } else {
+        //        console.log("Failure");
+        //    }
+        //})
+        //this.refreshFriendUI(1);
+
+    }
+
+    async friendConnection() {
+        await fetch("http://localhost:5001/addFriend", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -59,8 +82,8 @@ class friendListPage extends Component {
                 console.log("Failure");
             }
         })
-        this.refreshFriendUI(1);
-
+        await this.refreshFriendUI(1);
+        this.setState({ addedFriend: true });
     }
 
     async refreshFriendUI(order) {
@@ -186,7 +209,13 @@ class friendListPage extends Component {
                 <div className="form">
                     <h1>ADD FRIEND</h1>
                     <TextInputComponent label="Friend Username: " logChange={this.friendNameChange} />
-                    <ButtonComponent label="Add Friend" isPressed={this.addFriend} />
+                        <ButtonComponent label="Add Friend" isPressed={this.addFriend} />
+                        {
+                            this.state.addedFriend
+                                ? <h3 className="flavorText"> Friend added! </h3>
+                                : <p></p>
+                        
+                        }
                 </div>
 
                 <div className="form">

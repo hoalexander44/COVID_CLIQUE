@@ -72,6 +72,7 @@ button:hover {
     box-shadow: 5px 5px 5px #0b032d;
     color: white;
     margin-top: 20px;
+    font-size: 15px;
 }
 
 .nonInputText{
@@ -97,6 +98,7 @@ h1, h2 {
     font-weight: 100;
     box-shadow: 5px 5px 5px #0b032d;
     border-radius: 8px;
+    font-size: 18px;
 }
 
 .medium {
@@ -109,6 +111,7 @@ h1, h2 {
     margin-top: 20px;
     box-shadow: 5px 5px 5px #0b032d;
     border-radius: 8px;
+    font-size: 18px;
 }
 
 .low {
@@ -121,6 +124,7 @@ h1, h2 {
     margin-top: 20px;
     box-shadow: 5px 5px 5px #0b032d;
     border-radius: 8px;
+    font-size: 18px;
 }
 
 .dangerousText {
@@ -149,5 +153,9 @@ h1, h2 {
 
 .forceMargin{
     margin-top: 100px;
+}
+
+.flavorText {
+    color: #FBA465;
 }
 
