@@ -35,6 +35,12 @@ class LinkBar extends Component {
                                     state: { username: this.props.username }
                                 }}> Friends </Link></th>
 
+                            <th><Link
+                                to={{
+                                    pathname: "/hotSpotPage",
+                                    state: { username: this.props.username }
+                                }}> Hot Spots </Link></th>
+
 
                     </tr>
                         </tbody>

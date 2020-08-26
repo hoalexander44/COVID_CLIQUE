@@ -13,7 +13,8 @@ class userPage extends Component {
         super();
         this.state = {
             username: "",
-            linkBar: null
+            linkBar: null,
+            score: 0
         };
     }
 
@@ -25,6 +26,20 @@ class userPage extends Component {
             <LinkBar key="linkBar" username={this.props.location.state.username}/>
         )
         await this.setState({ linkBar: table })
+
+        let response = await fetch("http://localhost:5001/getUserData", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                username: this.state.username,
+            })
+        })
+
+        let responseJson = await response.json();
+        this.setState({ score: responseJson.score });
+        console.log(responseJson);
     }
 
     render() {
@@ -33,9 +48,9 @@ class userPage extends Component {
                 <DocumentMeta {...meta} />
                 {this.state.linkBar}
                 <h1>YOUR SCORE</h1>
-                <div className="bigText">2020</div>
+                <div className="bigText">{this.state.score}</div>
                 <div>
-                    <h1>THANK YOU FOR HELPING TO FIGHT COVID 19</h1>
+                    <h2>THANK YOU FOR HELPING TO FIGHT COVID 19</h2>
                     <div className="form">
                         <TextInputComponent label="Where have you been? " />
                         <ButtonComponent label="SUBMIT" />

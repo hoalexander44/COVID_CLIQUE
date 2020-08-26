@@ -57,7 +57,7 @@ function locationScoreAlgo(visits, infectedVisits) {
 }
 
 function userScoreAlgo(score, totalMinutesSinceLastVisit, locationScore) {
-	let newScore = score + (totalMinutesSinceLastVisit * 10) - locationScore
+	let newScore = score + (totalMinutesSinceLastVisit * 100) - locationScore
 	return newScore;
 }
 
