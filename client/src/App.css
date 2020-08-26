@@ -24,11 +24,14 @@ button {
 }
 
 table {
+    position: fixed;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
+    top: 0%;
     border: none;
-    background-image: linear-gradient(to right, #f67e7d, #843b62);
+    /*    background-image: linear-gradient(to right, #f67e7d, #843b62);*/
+    background-image: linear-gradient(to right, #ff751a, #ff3399);
     /*    background-image: linear-gradient(to right, #0b032d, #621940);*/
     width: 100%;
     /*    box-shadow: 0px 10px 20px #0a010d; */
@@ -37,9 +40,10 @@ table {
 table, th, td {
     padding-right: 14px;
     padding-left: 14px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
     font-weight: normal;
+    font-size: 20px;
 }
 
 button {
@@ -60,6 +64,7 @@ button:hover {
 .form {
     border-radius: 8px;
     background-color: #843b62;
+/*    background-color:  #ff3399*/
     width: 80%;
     text-align: center;
     margin: 0 auto;
@@ -73,7 +78,7 @@ button:hover {
     color:white;
 }
 
-h1 {
+h1, h2 {
     color: white;
 }
 
@@ -82,7 +87,7 @@ h1 {
 }
 
 .dangerous {
-    color: #0b032d;
+    color: white;
     background-color: #D1193E;
     text-align: center;
     width: 100%;
@@ -96,7 +101,7 @@ h1 {
 
 .medium {
     color: #0b032d;
-    background-color: #F86E51;
+    background-color: #ff751a;
     text-align: center;
     width: 100%;
     height: 50px;
@@ -118,8 +123,31 @@ h1 {
     border-radius: 8px;
 }
 
-.bigText {
-    font-size: 100px;
+.dangerousText {
+    color: #D1193E;
+    font-size: 400%;
+}
+
+.mediumText {
+    color: #ff751a;
+    font-size: 400%;
+}
+
+.lowText {
     color: #FBA465;
+    font-size: 400%;
+}
+
+.bigText {
+    font-size: 400%;
+    color: #FBA465;
+}
+
+.textContainer{
+    width: 100%;
+}
+
+.forceMargin{
+    margin-top: 100px;
 }
 
