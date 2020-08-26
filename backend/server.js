@@ -212,35 +212,50 @@ app.post("/addFriend", function (req, res) {
 	let username = req.body.username; // NEED TO COMPARE FRIEND NAME AND USERNAME TO MAKE SURE USER IS NOT ADDING THEMSELVES
 
 	if (friendName !== username) {
-		pool.query("SELECT username FROM users WHERE username = $1", [
-			friendName,
-		])
-			.then(function (response) {
-				if (response.rows.length === 0) {
-					console.log("USERNAME NO EXIST")
-					return res.status(401).send();
+		let getFriendsQuery = "SELECT * FROM friends_" + username;
+
+		pool.query(getFriendsQuery).then(function (friendListResponse){
+			let friendList = friendListResponse.rows;
+			for (let i = 0; i < friendList.length; i++) {
+				if (friendList[i].friend_name == friendName) {
+					// if friend already exists
+					console.log("friend already exists");
+					return res.status(200).send();
 				}
-				else {
+			}
+
+			pool.query("SELECT username FROM users WHERE username = $1", [
+				friendName,
+			])
+				.then(function (response) {
+					if (response.rows.length === 0) {
+						console.log("USERNAME NO EXIST")
+						return res.status(401).send();
+					}
+					else {
 
 
 
-					let insertFriendQuery = "INSERT INTO friends_" + username + " (friend_name) VALUES ($1)"
-					pool.query(
-						insertFriendQuery,
-						[friendName]
-					).then(function (response) {
-						console.log("ADDED FRIEND");
-						return res.status(200).send();
-					})
+						let insertFriendQuery = "INSERT INTO friends_" + username + " (friend_name) VALUES ($1)"
+						pool.query(
+							insertFriendQuery,
+							[friendName]
+						).then(function (response) {
+							console.log("ADDED FRIEND");
+							return res.status(200).send();
+						})
 
 
 
-				}
-			})
-			.catch(function (error) {
-				console.log(error);
-				res.status(500).send(); // server error
-			});
+					}
+				})
+				.catch(function (error) {
+					console.log(error);
+					res.status(500).send(); // server error
+				});
+		});
+
+
 	}
 	else {
 		res.status(500).send();
