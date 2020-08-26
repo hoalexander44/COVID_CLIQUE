@@ -6,8 +6,10 @@ import LinkBar from '../components/LinkBar'
 import TextInputComponent from '../components/TextInputComponent'
 import ButtonComponent from '../components/ButtonComponent'
 import InputPasswordComponent from '../components/InputPasswordComponent'
+import DocumentMeta from 'react-document-meta';
 
 let nameFriend = ''
+const meta = { name: "viewport", content: "width=device-width, initial-scale=1.0" }
 class friendListPage extends Component {
     constructor() {
         super();
@@ -36,7 +38,7 @@ class friendListPage extends Component {
     // keeps track of the add friend input
     friendNameChange = (event) => {
         nameFriend = event.target.value;
-        console.log(nameFriend);
+        //console.log(nameFriend);
     }
 
     // adds a friend
@@ -121,10 +123,10 @@ class friendListPage extends Component {
             console.log(index);
 
             let className = 'low';
-            if (chosenSortedList[i] < 0) {
+            if (chosenSortedList[i] > 1000) {
                 className = "dangerous";
             }
-            else if (chosenSortedList[i] >= 0 && chosenSortedList[i] < 100) {
+            else if (chosenSortedList[i] >= 500 && chosenSortedList[i] <= 1000) {
                 className = "medium";
             }
             else {
@@ -169,16 +171,18 @@ class friendListPage extends Component {
     }
 
     lowToHigh= () => {
-        this.refreshFriendUI(1);
+        this.refreshFriendUI(-1);
     }
 
     highToLow = () => {
-        this.refreshFriendUI(-1);
+        this.refreshFriendUI(1);
     }
     render() {
         return (
             <div>
+                <DocumentMeta {...meta} />
                 {this.state.linkBar}
+                <div className="forceMargin">
                 <div className="form">
                     <h1>ADD FRIEND</h1>
                     <TextInputComponent label="Friend Username: " logChange={this.friendNameChange} />
@@ -190,6 +194,7 @@ class friendListPage extends Component {
                     <ButtonComponent label="Best Score to Worst Score" isPressed={this.highToLow} />
                     <ButtonComponent label="Worst Score to Best Score" isPressed={this.lowToHigh} />
                     {this.state.friendUI}
+                    </div>
                 </div>
             </div>
         );

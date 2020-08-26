@@ -54,10 +54,11 @@ function dateToString(newDate) {
 
 function locationScoreAlgo(visits, infectedVisits) {
 	let newLocationScore = (visits) + (infectedVisits * 100);
+	return newLocationScore;
 }
 
 function userScoreAlgo(score, totalMinutesSinceLastVisit, locationScore) {
-	let newScore = score + (totalMinutesSinceLastVisit * 100) - locationScore
+	let newScore = score - (totalMinutesSinceLastVisit * 100) + locationScore
 	return newScore;
 }
 
@@ -311,8 +312,8 @@ app.post("/addUserData", function (req, res) {
 			console.log(locationResponse.rows[0].location_score);
 
 			let newVisits = locationResponse.rows[0].visits + 1;
-			 let newLocationScore = (newVisits * 1) + (locationResponse.rows[0].infected_visits * 100);
-			//newLocationScore = locationScoreAlgo(newVisits, locationResponse.rows[0].infected_visits);
+			 //let newLocationScore = (newVisits * 1) + (locationResponse.rows[0].infected_visits * 100);
+			let newLocationScore = locationScoreAlgo(newVisits, locationResponse.rows[0].infected_visits);
 			location_score = newLocationScore;
 
 			pool.query("UPDATE locations SET visits=$1, location_score=$2  WHERE location_name= $3", [

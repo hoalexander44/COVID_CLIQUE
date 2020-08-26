@@ -24,9 +24,11 @@ button {
 }
 
 table {
+    position: fixed;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
+    top: 0%;
     border: none;
     /*    background-image: linear-gradient(to right, #f67e7d, #843b62);*/
     background-image: linear-gradient(to right, #ff751a, #ff3399);
@@ -85,7 +87,7 @@ h1, h2 {
 }
 
 .dangerous {
-    color: #0b032d;
+    color: white;
     background-color: #D1193E;
     text-align: center;
     width: 100%;
@@ -99,7 +101,7 @@ h1, h2 {
 
 .medium {
     color: #0b032d;
-    background-color: #F86E51;
+    background-color: #ff751a;
     text-align: center;
     width: 100%;
     height: 50px;
@@ -121,6 +123,21 @@ h1, h2 {
     border-radius: 8px;
 }
 
+.dangerousText {
+    color: #D1193E;
+    font-size: 400%;
+}
+
+.mediumText {
+    color: #ff751a;
+    font-size: 400%;
+}
+
+.lowText {
+    color: #FBA465;
+    font-size: 400%;
+}
+
 .bigText {
     font-size: 400%;
     color: #FBA465;
@@ -128,5 +145,9 @@ h1, h2 {
 
 .textContainer{
     width: 100%;
+}
+
+.forceMargin{
+    margin-top: 100px;
 }
 

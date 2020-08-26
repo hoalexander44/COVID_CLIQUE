@@ -4,6 +4,7 @@ import { createBrowserHistory } from 'history';
 import axios from "axios";
 import LinkBar from '../components/LinkBar'
 import DocumentMeta from 'react-document-meta';
+import ButtonComponent from '../components/ButtonComponent'
 
 const meta = { name: "viewport", content: "width=device-width, initial-scale=1.0" }
 class hotSpotPage extends Component {
@@ -95,10 +96,10 @@ class hotSpotPage extends Component {
             console.log(index);
 
             let className = 'low';
-            if (chosenSortedList[i] < 0) {
+            if (chosenSortedList[i] > 2000 ) {
                 className = "dangerous";
             }
-            else if (chosenSortedList[i] >= 0 && chosenSortedList[i] < 100) {
+            else if (chosenSortedList[i] <= 2000 && chosenSortedList[i] > 500) {
                 className = "medium";
             }
             else {
@@ -133,7 +134,7 @@ class hotSpotPage extends Component {
         let index = 0;
         let found = false;
         for (let i = 0; i < locationInfoList.length; i++) {
-            if (locationInfoList[i].score == score) {
+            if (locationInfoList[i].location_score == score) {
                 index = i;
                 found = true;
             }
@@ -143,20 +144,24 @@ class hotSpotPage extends Component {
     }
 
     lowToHigh = () => {
-        this.refreshFriendUI(1);
+        this.refreshLocationUI(-1);
     }
 
     highToLow = () => {
-        this.refreshFriendUI(-1);
+        this.refreshLocationUI(1);
     }
 
     render() {
         return (
             <div>
                 <DocumentMeta {...meta} />
+                <div className="forceMargin">
                 {this.state.linkBar}
-                <h1>HOT SPOT PAGE</h1>
-                {this.state.locationUI}
+                <ButtonComponent label="Best Score to Worst Score" isPressed={this.highToLow} />
+                <ButtonComponent label="Worst Score to Best Score" isPressed={this.lowToHigh} />
+                <h1>HOT SPOTS</h1>
+                    {this.state.locationUI}
+                </div>
             </div>
         );
     }
