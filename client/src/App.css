@@ -18,8 +18,7 @@ a {
 }
 
 button {
-    width: 100px;
-    height: 50px;
+    padding: 20px;
     font-size: 40px;
     color: white;
 }
@@ -61,7 +60,7 @@ button:hover {
 .form {
     border-radius: 8px;
     background-color: #843b62;
-    width: 50%;
+    width: 80%;
     text-align: center;
     margin: 0 auto;
     padding: 50px;
@@ -86,7 +85,7 @@ h1 {
     color: #0b032d;
     background-color: #D1193E;
     text-align: center;
-    width: 300px;
+    width: 100%;
     height: 50px;
     margin: 0 auto;
     margin-top: 20px;
@@ -99,7 +98,7 @@ h1 {
     color: #0b032d;
     background-color: #F86E51;
     text-align: center;
-    width: 300px;
+    width: 100%;
     height: 50px;
     margin: 0 auto;
     margin-top: 20px;
@@ -111,11 +110,16 @@ h1 {
     color: #0b032d;
     background-color: #FBA465;
     text-align: center;
-    width: 300px;
+    width: 100%;
     height: 50px;
     margin: 0 auto;
     margin-top: 20px;
     box-shadow: 5px 5px 5px #0b032d;
     border-radius: 8px;
+}
+
+.bigText {
+    font-size: 100px;
+    color: #FBA465;
 }
 

@@ -51,7 +51,6 @@ class registerPage extends Component {
     render() {
         return (
             <div>
-                <LinkBar />
                 <div className="form">
                     <h1>REGISTER</h1>
                     <TextInputComponent label="Username: " logChange={this.usernameChange} />

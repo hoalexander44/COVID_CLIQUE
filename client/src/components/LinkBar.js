@@ -3,21 +3,38 @@ import { BrowserRouter as Router, Route, Switch, Link, Redirect } from "react-ro
 import './component.css';
 
 class LinkBar extends Component {
+    constructor() {
+        super();
+        this.state = {
+            username: ""
+        };
+    }
+
+    async componentDidMount() {
+        console.log("LINK BAR's USERNMAE: " + this.props.username);
+        this.setState({ username: this.props.username });
+        //console.log(this.props.location.state.username)
+        //await this.setState({ username: this.props.location.state.username })
+    }
+
     render() {
         return (
             <div>
                 <table>
                     <tbody>
                     <tr>
-                        <th><Link to="/"> Home </Link> </th>
-                        <th><Link to="/mainScreenPage"> Main Screen </Link></th>
-                        <th><Link to="/userPage"> User Page </Link></th>
-                        <th><Link to="/innerCircle"> Inner Circle </Link></th>
-                        <th><Link to="/hotSpotPage"> Hot Spot Page </Link></th>
-                        <th><Link to="/friendList"> Friend List </Link></th>
-                        <th><Link to="/addDataPage"> Add Data Page </Link></th>
-                        <th><Link to="/loginPage"> LOGIN </Link></th>
-                        <th><Link to="/register"> REGISTER </Link></th>
+                            <th><Link
+                                to={{
+                                    pathname: "/userPage",
+                                    state: { username: this.props.username }
+                                }}> User Page </Link></th>
+
+                            <th><Link
+                                to={{
+                                    pathname: "/friendList",
+                                    state: { username: this.props.username }
+                                }}> Friends </Link></th>
+
 
                     </tr>
                         </tbody>
