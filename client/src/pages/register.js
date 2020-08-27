@@ -11,6 +11,12 @@ let username = '';
 let password = '';
 
 class registerPage extends Component {
+    constructor() {
+        super();
+        this.state = {
+            registerMessage: ''
+        };
+    }
 
     usernameChange = (event) => {
         username = event.target.value;
@@ -22,9 +28,28 @@ class registerPage extends Component {
         //console.log(password);
     }
 
-    postRegister = () => {
+    postRegister = (event) => {
+        this.registerConnection();
+        //fetch("http://localhost:5001/user", {
+        //    method: "POST",
+        //    headers: {
+        //        "Content-Type": "application/json"
+        //    },
+        //    body: JSON.stringify({
+        //        username: username,
+        //        plaintextPassword: password,
+        //    })
+        //}).then(function (response) {
+        //    if (response.status === 200) {
+        //        console.log("Success");
+        //    } else {
+        //        console.log("Failure");
+        //    }
+        //})
+    }
 
-        fetch("http://localhost:5001/user", {
+    async registerConnection() {
+        let response = await fetch("http://localhost:5001/user", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -33,13 +58,15 @@ class registerPage extends Component {
                 username: username,
                 plaintextPassword: password,
             })
-        }).then(function (response) {
-            if (response.status === 200) {
-                console.log("Success");
-            } else {
-                console.log("Failure");
-            }
-        })
+        });
+
+        if (response.status === 200) {
+            console.log("Success");
+            this.setState({registerMessage: "REGISTERED!"})
+        } else {
+            console.log("Failure");
+            this.setState({ registerMessage: "Registration failed" })
+        }
     }
 
     render() {
@@ -51,6 +78,7 @@ class registerPage extends Component {
                     <InputPasswordComponent type="password" label="Password: " logChange={this.passwordChange} />
                     <ButtonComponent label="Register" isPressed={this.postRegister} />
                     <Link to="/"> Login </Link>
+                    <h3>{this.state.registerMessage}</h3>
                 </div>
             </div>
         );

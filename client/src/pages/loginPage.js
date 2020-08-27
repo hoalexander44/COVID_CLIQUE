@@ -61,6 +61,15 @@ class loginPage extends Component {
         }
     }
 
+    goToPublicHotSpots = (event) => {
+        console.log("hi");
+        this.props.history.push(
+            {
+                pathname: "/publicHotSpot"
+            }
+        );
+    }
+
 
     render() {
         return (
@@ -76,7 +85,12 @@ class loginPage extends Component {
                             : <p></p>
                     }
                     <Link to="/register"> Register </Link>
+
+
+
+
                 </div>
+                <button className="giantButton" onClick={this.goToPublicHotSpots}> HOT SPOTS </button>
             </div>
         );
     }

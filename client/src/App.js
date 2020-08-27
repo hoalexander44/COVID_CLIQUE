@@ -9,6 +9,7 @@ import mainScreenPage from './pages/mainScreenPage'
 import loginPage from './pages/loginPage'
 import innerCircle from './pages/innerCircle'
 import hotSpotPage from './pages/hotSpotPage'
+import publicHotSpotPage from './pages/publicHotSpotPage'
 import friendList from './pages/friendList'
 import addDataPage from './pages/addDataPage'
 import moreInfoPage from './pages/moreInfoPage'
@@ -47,6 +48,7 @@ class App extends Component{
                     <Route exact path="/mainScreenPage" component={mainScreenPage} />
                     <Route exact path="/innerCircle" component={innerCircle} />
                     <Route exact path="/hotSpotPage" component={hotSpotPage} />
+                    <Route exact path="/publicHotSpot" component={publicHotSpotPage} />
                     <Route exact path="/friendList" component={friendList} />
                     <Route exact path="/addDataPage" component={addDataPage} />
                     <Route exact path="/moreInfo" component={moreInfoPage} />

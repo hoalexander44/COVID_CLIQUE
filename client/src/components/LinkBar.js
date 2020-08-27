@@ -8,6 +8,7 @@ import { faAddressCard } from '@fortawesome/free-solid-svg-icons'
 import { faUserFriends } from '@fortawesome/free-solid-svg-icons'
 import { faMap } from '@fortawesome/free-solid-svg-icons'
 import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 class LinkBar extends Component {
     constructor() {
@@ -54,6 +55,11 @@ class LinkBar extends Component {
                                     pathname: "/moreInfo",
                                     state: { username: this.props.username }
                                 }}> <FontAwesomeIcon icon={faQuestionCircle} /> </Link></th>
+
+                            <th><Link
+                                to={{
+                                    pathname: "/",
+                                }}> <FontAwesomeIcon icon={faArrowRight} /> </Link></th>
 
 
                     </tr>
