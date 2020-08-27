@@ -1,4 +1,7 @@
 .idea
+.env.json/
+env.json
 .env.json
+/env.json
 /client/node_modules/
 /api/node_modules/
