@@ -1,4 +1,5 @@
 Follow these instructions to Setup the full web development stack locally
+
 STEP 1
 Download and Install Node JS here
 https://nodejs.org/en/
