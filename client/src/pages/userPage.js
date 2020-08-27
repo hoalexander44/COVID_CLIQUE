@@ -8,6 +8,14 @@ import TextInputComponent from '../components/TextInputComponent'
 import CheckBoxComponent from '../components/CheckBoxComponent'
 import DocumentMeta from 'react-document-meta';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faAddressCard } from '@fortawesome/free-solid-svg-icons'
+import { faUserFriends } from '@fortawesome/free-solid-svg-icons'
+import { faMap } from '@fortawesome/free-solid-svg-icons'
+import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
+
+
 let locationName = '';
 let isInfected = false;
 let hasSymptoms = false;
@@ -23,7 +31,9 @@ class userPage extends Component {
             score: 0,
             levelStyle: '',
             submittedReport: false,
-            submittedLocation: false
+            submittedLocation: false,
+            lastPublicOuting: '0/0/000',
+            pointDiff: ''
         };
     }
 
@@ -49,6 +59,8 @@ class userPage extends Component {
         let responseJson = await response.json();
         this.setState({ score: responseJson.score });
 
+        await this.updateLastPublicOuting(responseJson.last_location_time);
+
 
         console.log(responseJson);
 
@@ -64,12 +76,37 @@ class userPage extends Component {
         this.setState({locationsUI: UITable})
     }
 
+    async updateLastPublicOuting(lastLocationTime) {
+        let newDate = new Date(lastLocationTime);
+        let hours = newDate.getHours();
+        let timeAMPM = '';
+
+        if (hours >= 12) {
+            timeAMPM = 'PM';
+        }
+        else {
+            timeAMPM = 'AM';
+        }
+        hours = hours % 12;
+        if (hours == 0) {
+            hours = 12;
+        }
+
+        let minutes = String(newDate.getMinutes()).padStart(2, '0');
+        let month = String(newDate.getMonth() + 1).padStart(2, '0');
+        let year = String(newDate.getFullYear()).padStart(2, '0');
+        let day = String(newDate.getDate()).padStart(2, '0');
+
+        let dateString = month + "/" + day + "/" + year + "    " + hours + ":" + minutes + " " + timeAMPM;
+        this.setState({ lastPublicOuting: dateString })
+    }
+
     updateLevelStyle(score) {
         console.log(score)
-        if (score > 1000) {
+        if (score > 20000) {
             this.setState({ levelStyle: "dangerousText" })
         }
-        else if (score >= 500 && score <= 1000) {
+        else if (score >= 500 && score <= 20000) {
             this.setState({ levelStyle: "mediumText" })
         }
         else {
@@ -133,9 +170,22 @@ class userPage extends Component {
         })
 
         let responseJson = await response.json();
+
+        let scoreDiff = responseJson.score - this.state.score;
+        console.log("POINTS GAINED: " + scoreDiff);
+        if (scoreDiff < 0) {
+            this.setState({ pointDiff: "-" + scoreDiff })
+        }
+        else {
+            this.setState({ pointDiff: "+" + scoreDiff })
+        }
+
         this.setState({ score: responseJson.score });
+
+        this.setState({lastPublicOuting: responseJson.last_location_time})
         this.setState({ submittedLocation: true });
         this.updateLevelStyle(responseJson.score);
+        await this.updateLastPublicOuting(responseJson.last_location_time);
         console.log(responseJson);
 
     }
@@ -177,31 +227,36 @@ class userPage extends Component {
                 <div className = "forceMargin">
                     <h1>EXPOSURE LEVEL</h1>
                     <div className={this.state.levelStyle}> {this.state.score}</div>
+                    <h3 className="orangeSimpleText">{this.state.pointDiff}</h3>
+                    <h3>Last Public Outing: </h3>
+                    <h2>{this.state.lastPublicOuting}</h2>
 
                     <div>
-                        <h2>THANK YOU FOR HELPING TO FIGHT COVID 19</h2>
                         <div className="form">
+
+
+                            <h3><TextInputComponent label="Where have you been? " logChange={this.locationNameChange} /></h3>
+                            <h4> Suggested Locations </h4>
+                            {this.state.locationsUI}
+                            <ButtonComponent label="SUBMIT" isPressed={this.addData} />
                             {
                                 this.state.submittedLocation
-                                    ? <p> Thank you! </p>
+                                    ? <p className="flavorText"> Thank you! </p>
                                     : <p></p>
                             }
 
-                            <h3><TextInputComponent label="Where have you been? " logChange={this.locationNameChange}/></h3>
-                            <ButtonComponent label="SUBMIT" isPressed={this.addData} />
-                            <h4> Suggested Locations </h4>
-                            {this.state.locationsUI}
+
 
                             </div>
                     </div>
 
                     <div className="form">
-                        <input type="checkbox" id="infected" name="infected" onChange={this.recordSymptoms} />
-                        <label for="infected"> I have symptoms</label><br />
+                        <h2> Symptoms                             <Link to={{ pathname: "/symptoms", state: { username: this.state.username }}}> <FontAwesomeIcon icon={faQuestionCircle} /> </Link></h2>
+                        <input className="largerCheckBox" type="checkbox" id="infected" name="infected" onChange={this.recordSymptoms} />
 
+                        <h2> Infected </h2>
+                        <input className = "largerCheckBox" type="checkbox" id="infected" name="infected" onChange={this.recordInfected} />
 
-                        <input type="checkbox" id="infected" name="infected" onChange={this.recordInfected} />
-                        <label for="infected"> I have been diagnosed with Covid 19</label><br />
 
 
                         <ButtonComponent label="REPORT" isPressed={this.selfReport} />

@@ -207,7 +207,7 @@ class friendListPage extends Component {
                 {this.state.linkBar}
                 <div className="forceMargin">
                 <div className="form">
-                    <h1>ADD FRIEND</h1>
+                        <h1>ADD FRIEND</h1>
                     <TextInputComponent label="Friend Username: " logChange={this.friendNameChange} />
                         <ButtonComponent label="Add Friend" isPressed={this.addFriend} />
                         {
@@ -220,8 +220,10 @@ class friendListPage extends Component {
 
                 <div className="form">
                     <h2>Friend List</h2>
+
                     <ButtonComponent label="Best Score to Worst Score" isPressed={this.highToLow} />
-                    <ButtonComponent label="Worst Score to Best Score" isPressed={this.lowToHigh} />
+                        <ButtonComponent label="Worst Score to Best Score" isPressed={this.lowToHigh} />
+                        <p> &#9672; user has COVID 19</p>
                     {this.state.friendUI}
                     </div>
                 </div>

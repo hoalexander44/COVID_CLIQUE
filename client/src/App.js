@@ -11,6 +11,8 @@ import innerCircle from './pages/innerCircle'
 import hotSpotPage from './pages/hotSpotPage'
 import friendList from './pages/friendList'
 import addDataPage from './pages/addDataPage'
+import moreInfoPage from './pages/moreInfoPage'
+import symptomsPage from './pages/symptomsPage'
 import axios from 'axios';
 
 
@@ -48,6 +50,8 @@ class App extends Component{
                     <Route exact path="/hotSpotPage" component={hotSpotPage} />
                     <Route exact path="/friendList" component={friendList} />
                     <Route exact path="/addDataPage" component={addDataPage} />
+                    <Route exact path="/moreInfo" component={moreInfoPage} />
+                    <Route exact path="/symptoms" component={symptomsPage} />
 
                     <Route exact path="/404" component={NotFound} />
                     <Redirect to="/404" />

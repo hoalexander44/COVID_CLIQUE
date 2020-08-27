@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from "react-router-dom";
 import './component.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faAddressCard } from '@fortawesome/free-solid-svg-icons'
+import { faUserFriends } from '@fortawesome/free-solid-svg-icons'
+import { faMap } from '@fortawesome/free-solid-svg-icons'
+import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons'
+
 class LinkBar extends Component {
     constructor() {
         super();
@@ -20,26 +27,33 @@ class LinkBar extends Component {
     render() {
         return (
             <div>
+                <script src='https://kit.fontawesome.com/a076d05399.js'></script>
                 <table>
                     <tbody>
-                    <tr>
+                        <tr>
                             <th><Link
                                 to={{
                                     pathname: "/userPage",
                                     state: { username: this.props.username }
-                                }}> User Page </Link></th>
+                                }}> <FontAwesomeIcon icon={faAddressCard} /> </Link></th>
 
                             <th><Link
                                 to={{
                                     pathname: "/friendList",
                                     state: { username: this.props.username }
-                                }}> Friends </Link></th>
+                                }}> <FontAwesomeIcon icon={faUserFriends} /> </Link></th>
 
                             <th><Link
                                 to={{
                                     pathname: "/hotSpotPage",
                                     state: { username: this.props.username }
-                                }}> Hot Spots </Link></th>
+                                }}> <FontAwesomeIcon icon={faMap} /> </Link></th>
+
+                            <th><Link
+                                to={{
+                                    pathname: "/moreInfo",
+                                    state: { username: this.props.username }
+                                }}> <FontAwesomeIcon icon={faQuestionCircle} /> </Link></th>
 
 
                     </tr>
