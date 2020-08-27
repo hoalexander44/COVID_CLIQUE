@@ -40,12 +40,11 @@ class App extends Component{
 
             <Router>
                 <Switch>
-                    <Route exact path="/" component={homePage} />
-
+                    <Route exact path="/" component={loginPage} />
+                    <Route exact path="/loginPage" component={loginPage} />
                     <Route exact path="/userPage" component={userPage} />
                     <Route exact path="/register" component={register} />
                     <Route exact path="/mainScreenPage" component={mainScreenPage} />
-                    <Route exact path="/loginPage" component={loginPage} />
                     <Route exact path="/innerCircle" component={innerCircle} />
                     <Route exact path="/hotSpotPage" component={hotSpotPage} />
                     <Route exact path="/friendList" component={friendList} />

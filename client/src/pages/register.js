@@ -23,12 +23,6 @@ class registerPage extends Component {
     }
 
     postRegister = () => {
-        fetch("http://localhost:5001/weather").then(function (response) {
-            console.log(response);
-            return response.text();
-        }).then(function (data) {
-            console.log(data);
-        });
 
         fetch("http://localhost:5001/user", {
             method: "POST",
@@ -56,7 +50,7 @@ class registerPage extends Component {
                     <TextInputComponent label="Username: " logChange={this.usernameChange} />
                     <InputPasswordComponent type="password" label="Password: " logChange={this.passwordChange} />
                     <ButtonComponent label="Register" isPressed={this.postRegister} />
-                    <Link to="/loginPage"> Login </Link>
+                    <Link to="/"> Login </Link>
                 </div>
             </div>
         );
