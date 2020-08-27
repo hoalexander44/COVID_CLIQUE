@@ -18,6 +18,11 @@ class loginPage extends Component {
         };
     }
 
+    async componentDidMount() {
+        username = '';
+        password = '';
+    }
+
     usernameChange = (event) => {
         username = event.target.value;
         //console.log(username);
