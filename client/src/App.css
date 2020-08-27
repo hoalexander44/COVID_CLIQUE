@@ -28,7 +28,7 @@ table {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 20px;
-    top: 0%;
+    bottom: -3%;
     border: none;
     /*    background-image: linear-gradient(to right, #f67e7d, #843b62);*/
     background-image: linear-gradient(to right, #ff751a, #ff3399);
@@ -61,14 +61,16 @@ button:hover {
     color: white;
 }
 
+
 .form {
+
     border-radius: 8px;
     background-color: #843b62;
 /*    background-color:  #ff3399*/
     width: 80%;
     text-align: center;
     margin: 0 auto;
-    padding: 50px;
+    padding: 20px;
     box-shadow: 5px 5px 5px #0b032d;
     color: white;
     margin-top: 20px;
@@ -77,14 +79,18 @@ button:hover {
 
 .nonInputText{
     color:white;
+
 }
 
-h1, h2 {
+h1, h2, h3 {
     color: white;
 }
 
-.textInput{
+.textInput {
     text-align: left;
+    font-size: 20px;
+    height: 30px;
+    width: 100%;
 }
 
 .dangerous {
@@ -130,21 +136,25 @@ h1, h2 {
 .dangerousText {
     color: #D1193E;
     font-size: 400%;
+    font-weight: bold;
 }
 
 .mediumText {
     color: #ff751a;
     font-size: 400%;
+    font-weight: bold;
 }
 
 .lowText {
     color: #FBA465;
     font-size: 400%;
+    font-weight: bold;
 }
 
 .bigText {
     font-size: 400%;
     color: #FBA465;
+    font-weight: bold;
 }
 
 .textContainer{
@@ -152,10 +162,37 @@ h1, h2 {
 }
 
 .forceMargin{
-    margin-top: 100px;
+    margin-bottom: 100px;
 }
 
 .flavorText {
     color: #FBA465;
 }
+
+p {
+    color: white;
+}
+
+h2{
+    margin: 10px;
+}
+
+.redSimpleText {
+    color: #D1193E;
+}
+
+.orangeSimpleText {
+    color: #ff751a;
+}
+
+.yellowSimpleText {
+    color: #FBA465;
+}
+
+input.largerCheckBox{
+    width: 40px;
+    height: 40px;
+}
+
+
 

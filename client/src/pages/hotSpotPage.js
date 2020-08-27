@@ -96,10 +96,10 @@ class hotSpotPage extends Component {
             console.log(index);
 
             let className = 'low';
-            if (chosenSortedList[i] > 2000 ) {
+            if (chosenSortedList[i] > 20000 ) {
                 className = "dangerous";
             }
-            else if (chosenSortedList[i] <= 2000 && chosenSortedList[i] > 500) {
+            else if (chosenSortedList[i] <= 20000 && chosenSortedList[i] > 500) {
                 className = "medium";
             }
             else {
@@ -156,10 +156,10 @@ class hotSpotPage extends Component {
             <div>
                 <DocumentMeta {...meta} />
                 <div className="forceMargin">
-                {this.state.linkBar}
+                    {this.state.linkBar}
+                    <h1>HOT SPOTS</h1>
                 <ButtonComponent label="Best Score to Worst Score" isPressed={this.highToLow} />
                 <ButtonComponent label="Worst Score to Best Score" isPressed={this.lowToHigh} />
-                <h1>HOT SPOTS</h1>
                     {this.state.locationUI}
                 </div>
             </div>
