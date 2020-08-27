@@ -38,42 +38,51 @@ class userPage extends Component {
     }
 
     async componentDidMount() {
-        //console.log(this.props.location.state.username)
-        await this.setState({ username: this.props.location.state.username })
-        let table = [];
-        table.push(
-            <LinkBar key="linkBar" username={this.props.location.state.username}/>
-        )
-        await this.setState({ linkBar: table })
+        if (this.props.location.state !== undefined) {
+            //console.log(this.props.location.state.username)
+            await this.setState({ username: this.props.location.state.username })
+            let table = [];
+            table.push(
+                <LinkBar key="linkBar" username={this.props.location.state.username} />
+            )
+            await this.setState({ linkBar: table })
 
-        let response = await fetch("http://localhost:5001/getUserData", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                username: this.state.username,
+            let response = await fetch("http://localhost:5001/getUserData", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: this.state.username,
+                })
             })
-        })
 
-        let responseJson = await response.json();
-        this.setState({ score: responseJson.score });
+            let responseJson = await response.json();
+            this.setState({ score: responseJson.score });
 
-        await this.updateLastPublicOuting(responseJson.last_location_time);
+            await this.updateLastPublicOuting(responseJson.last_location_time);
 
 
-        console.log(responseJson);
+            console.log(responseJson);
 
-        this.updateLevelStyle(responseJson.score);
+            this.updateLevelStyle(responseJson.score);
 
-        let locationInfo = await this.getLocationInfo();
-        console.log(locationInfo.locations);
+            let locationInfo = await this.getLocationInfo();
+            console.log(locationInfo.locations);
 
-        let UITable = [];
-        for (let i = 0; i < locationInfo.locations.length; i++) {
-            UITable.push(<p>{locationInfo.locations[i].location_name}</p>)
+            let UITable = [];
+            for (let i = 0; i < locationInfo.locations.length; i++) {
+                UITable.push(<p>{locationInfo.locations[i].location_name}</p>)
+            }
+            this.setState({ locationsUI: UITable })
         }
-        this.setState({locationsUI: UITable})
+        else {
+            this.props.history.push(
+                {
+                    pathname: "/"
+                }
+            );
+        }
     }
 
     async updateLastPublicOuting(lastLocationTime) {

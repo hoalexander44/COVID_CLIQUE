@@ -17,13 +17,23 @@ class symptomsPage extends Component {
     }
 
     async componentDidMount() {
-        //console.log(this.props.location.state.username)
-        await this.setState({ username: this.props.location.state.username })
-        let table = [];
-        table.push(
-            <LinkBar key="linkBar" username={this.props.location.state.username} />
-        )
-        await this.setState({ linkBar: table })
+        if (this.props.location.state !== undefined) {
+            //console.log(this.props.location.state.username)
+            await this.setState({ username: this.props.location.state.username })
+            let table = [];
+            table.push(
+                <LinkBar key="linkBar" username={this.props.location.state.username} />
+            )
+            await this.setState({ linkBar: table })
+        }
+        else {
+            this.props.history.push(
+                {
+                    pathname: "/"
+                }
+            );
+        }
+
     }
 
     render() {

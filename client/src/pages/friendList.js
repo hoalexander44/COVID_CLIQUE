@@ -23,16 +23,26 @@ class friendListPage extends Component {
     }
 
     async componentDidMount() {
-        console.log(this.props.location.state.username)
-        await this.setState({ username: this.props.location.state.username })
-        let table = [];
-        table.push(
-            <LinkBar key="linkBar" username={this.props.location.state.username} />
-        )
-        await this.setState({ linkBar: table })
-        //let friendInfo = await this.getFriendsInfo();
-        //this.updateFriendUI(friendInfo.friendInfoList)
-        await this.refreshFriendUI();
+            if (this.props.location.state !== undefined) {
+                console.log(this.props.location.state.username)
+                await this.setState({ username: this.props.location.state.username })
+                let table = [];
+                table.push(
+                    <LinkBar key="linkBar" username={this.props.location.state.username} />
+                )
+                await this.setState({ linkBar: table })
+                //let friendInfo = await this.getFriendsInfo();
+                //this.updateFriendUI(friendInfo.friendInfoList)
+                await this.refreshFriendUI();
+        }
+        else {
+            this.props.history.push(
+                {
+                    pathname: "/"
+                }
+            );
+        }
+
     }
 
 

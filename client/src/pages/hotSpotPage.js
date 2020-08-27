@@ -18,24 +18,46 @@ class hotSpotPage extends Component {
     }
 
     async componentDidMount() {
-        //console.log(this.props.location.state.username)
-        await this.setState({ username: this.props.location.state.username })
-        let table = [];
-        table.push(
-            <LinkBar key="linkBar" username={this.props.location.state.username} />
-        )
-        await this.setState({ linkBar: table })
+        //if (this.props.location.state !== undefined) {
 
-        let response = await fetch("http://localhost:5001/getLocations", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
+        //}
+        //else {
+        //    this.props.history.push(
+        //        {
+        //            pathname: "/"
+        //        }
+        //    );
+        //}
 
-        let responseJson = await response.json();
-        console.log(responseJson);
-        this.refreshLocationUI(-1);
+        if (this.props.location.state !== undefined) {
+            //console.log(this.props.location.state.username)
+            await this.setState({ username: this.props.location.state.username })
+            let table = [];
+            table.push(
+                <LinkBar key="linkBar" username={this.props.location.state.username} />
+            )
+            await this.setState({ linkBar: table })
+
+            let response = await fetch("http://localhost:5001/getLocations", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+
+            let responseJson = await response.json();
+            console.log(responseJson);
+            this.refreshLocationUI(-1);
+        }
+        else {
+            this.props.history.push(
+                {
+                    pathname: "/"
+                }
+            );
+        }
+
+
     }
 
     async getLocationInfo() {

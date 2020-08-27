@@ -43,14 +43,11 @@ class App extends Component{
                 <Switch>
                     <Route exact path="/" component={loginPage} />
                     <Route exact path="/loginPage" component={loginPage} />
-                    <Route exact path="/userPage" component={userPage} />
                     <Route exact path="/register" component={register} />
-                    <Route exact path="/mainScreenPage" component={mainScreenPage} />
-                    <Route exact path="/innerCircle" component={innerCircle} />
+                    <Route exact path="/userPage" component={userPage} />
                     <Route exact path="/hotSpotPage" component={hotSpotPage} />
                     <Route exact path="/publicHotSpot" component={publicHotSpotPage} />
                     <Route exact path="/friendList" component={friendList} />
-                    <Route exact path="/addDataPage" component={addDataPage} />
                     <Route exact path="/moreInfo" component={moreInfoPage} />
                     <Route exact path="/symptoms" component={symptomsPage} />
 
