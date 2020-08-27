@@ -5,8 +5,8 @@ const cors = require('cors');
 const app = express();
 
 
-const port = 5001;
-const hostname = "localhost";
+const port = 5498;
+const hostname = "10.36.177.129";
 
 const saltRounds = 10;
 

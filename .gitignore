@@ -1,4 +1,4 @@
 .idea
-
+env.json
 /client/node_modules/
 /api/node_modules/
